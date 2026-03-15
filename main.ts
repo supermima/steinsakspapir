@@ -1,6 +1,7 @@
 radio.onReceivedNumber(function (receivedNumber) {
     mot = receivedNumber
     if (bn >= 0) {
+        radio.sendNumber(bn)
         basic.showString("123")
         visResultat(mot)
         basic.pause(1000)
