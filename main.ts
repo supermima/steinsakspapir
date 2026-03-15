@@ -4,6 +4,23 @@ input.onButtonPressed(Button.A, function () {
 input.onGesture(Gesture.Shake, function () {
     bn = randint(0, 2)
     basic.showString("123")
+})
+input.onButtonPressed(Button.B, function () {
+    bn += 1
+    if (2 < bn) {
+        bn += -3
+    }
+})
+function start () {
+    basic.showString("?")
+    radio.setGroup(1)
+    bn = -1
+    mot = -1
+}
+let mot = 0
+let bn = 0
+start()
+basic.forever(function () {
     if (bn == 0) {
         basic.showLeds(`
             . # # # .
@@ -31,19 +48,4 @@ input.onGesture(Gesture.Shake, function () {
     } else {
         basic.showIcon(IconNames.No)
     }
-})
-input.onButtonPressed(Button.B, function () {
-    bn += 1
-})
-function start () {
-    basic.showString("?")
-    radio.setGroup(1)
-    bn = -1
-    mot = -1
-}
-let mot = 0
-let bn = 0
-start()
-basic.forever(function () {
-	
 })
