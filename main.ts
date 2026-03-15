@@ -1,3 +1,12 @@
+radio.onReceivedNumber(function (receivedNumber) {
+    mot = receivedNumber
+    if (bn >= 0) {
+        basic.showString("123")
+        visResultat(mot)
+        basic.pause(1000)
+        resultat(bn, mot)
+    }
+})
 input.onButtonPressed(Button.A, function () {
     start()
 })
@@ -31,11 +40,7 @@ function visResultat (tall: number) {
     }
 }
 input.onGesture(Gesture.Shake, function () {
-    mot = randint(0, 2)
-    basic.showString("123")
-    visResultat(mot)
-    basic.pause(1000)
-    resultat(bn, mot)
+    radio.sendNumber(bn)
 })
 input.onButtonPressed(Button.B, function () {
     bn += 1
@@ -51,6 +56,10 @@ function start () {
     mot = -1
 }
 function resultat (du: number, motSpiller: number) {
+    if (du < 0 || motSpiller < 0) {
+        basic.showIcon(IconNames.Sad)
+        return
+    }
     if (du == 0 && motSpiller == 1) {
         vant = 1
     } else if (du == 1 && motSpiller == 2) {
@@ -69,6 +78,7 @@ function resultat (du: number, motSpiller: number) {
     } else {
         basic.showString("Uavgjort!")
     }
+    start()
 }
 let vant = 0
 let bn = 0
