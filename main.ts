@@ -20,7 +20,7 @@ input.onGesture(Gesture.Shake, function () {
             # # . # .
             # # . . #
             `)
-    } else {
+    } else if (bn == 2) {
         basic.showLeds(`
             . # # # .
             . # # # .
@@ -28,11 +28,20 @@ input.onGesture(Gesture.Shake, function () {
             . # # # .
             . . . . .
             `)
+    } else {
+        basic.showIcon(IconNames.No)
     }
+})
+input.onButtonPressed(Button.B, function () {
+    bn += 1
 })
 function start () {
     basic.showString("?")
+    radio.setGroup(1)
+    bn = -1
+    mot = -1
 }
+let mot = 0
 let bn = 0
 start()
 basic.forever(function () {
